@@ -1,5 +1,5 @@
 <div id="header">
-	<a id="headerlogo" href="https://ramity.com/projects/rchan/">R</a>
+	<a id="headerlogo" href="/rchan/index.php">R</a>
 	<div id="headerinr">
 		<?php
 		try
@@ -18,7 +18,7 @@
 			{
 				for($z=0;$z<count($r);$z++)
 				{
-					echo '<a class="threaditem" href="https://ramity.com/projects/rchan/v?t='.$r[$z]['id'].'">'.$r[$z]['name'].'</a>';
+					echo '<a class="threaditem" href="v.php?t='.$r[$z]['id'].'">'.$r[$z]['name'].'</a>';
 					if(isset($r[$z+1])&&!empty($r[$z+1]))
 					{
 						echo ' / ';

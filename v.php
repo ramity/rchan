@@ -12,7 +12,7 @@ if(isset($_GET['t'])&&!empty($_GET['t'])&&ctype_digit($_GET['t']))
 }
 else
 {
-	header('Location: https://ramity.com/projects/rchan/');
+	header('Location: index.php');
 }
 ?>
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ else
 		?>
 		<div id="content">
 			<div id="contentinr">
-				<form action="<?php echo "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";?>" method="post">
+				<form action="<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";?>" method="post">
 					<div class="inputlabel">Create a new board:</div>
 					<textarea autocomplete="off" placeholder="Board text" class="text" type="text" name="newBoardName"></textarea>
 					<input style="width:100%" value="create" class="button" type="submit" name="newBoardSubmit">
@@ -36,7 +36,7 @@ else
 				<?php
 				try
 				{
-					$d=new PDO('mysql:host=localhost;dbname=rchan_main;charset=utf8','ramity','Gr33ndayadmin');
+					$d=new PDO('mysql:host=localhost;dbname=rchan_main;charset=utf8','username','password');
 					$d->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 					$d->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 					$s=$d->prepare('SELECT id,text,op,date,votes,views,ifpinned,replies,ifimg,imgurl FROM boards WHERE threadid=:threadid');
@@ -50,10 +50,10 @@ else
 						for($z=0;$z<count($r);$z++)
 						{
 							echo '<div class="board">';
-								echo '<a href="'."https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]&b=".$r[$z]['id'].'" class="boardtopbar"><b>'.$r[$z]['op'].'</b> - '.$r[$z]['date'].' - No.'.$r[$z]['id'].' - '.$r[$z]['replies'].' replies<font class="votes">'.$r[$z]['votes'].' point(s)</font></a>';
+								echo '<a href="'."http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]&b=".$r[$z]['id'].'" class="boardtopbar"><b>'.$r[$z]['op'].'</b> - '.$r[$z]['date'].' - No.'.$r[$z]['id'].' - '.$r[$z]['replies'].' replies<font class="votes">'.$r[$z]['votes'].' point(s)</font></a>';
 								echo '<div class="boardtext">'.$r[$z]['text'].'</div>';
 								echo '<div class="boardreply">';
-									echo '<a class="replybutton" href="'."https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]&b=".$r[$z]['id'].'&r=true">reply</a>';
+									echo '<a class="replybutton" href="'."http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]&b=".$r[$z]['id'].'&r=true">reply</a>';
 								echo '</div>';
 							echo '</div>';
 							if(isset($r[$z+1])&&!empty($r[$z+1]))
