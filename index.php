@@ -9,14 +9,14 @@ if(isset($_POST['newThreadSubmit'])&&!empty($_POST['newThreadSubmit']))
 		{
 			try
 			{
-				$d=new PDO('mysql:host=localhost;dbname=rchan_main;charset=utf8','ramity','Gr33ndayadmin');
+				$d=new PDO('mysql:host=localhost;dbname=rchan_main;charset=utf8','username','password');
 				$d->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				$d->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
-				
+
 				$s=$d->prepare('SELECT id,name FROM threads');
 				$s->execute();
 				$r=$s->fetchAll(PDO::FETCH_ASSOC);
-				
+
 				if(empty($r))
 				{
 					$s=$d->prepare('INSERT INTO threads (name,creator,date) VALUES (:name,:creator,:date)');
@@ -24,7 +24,7 @@ if(isset($_POST['newThreadSubmit'])&&!empty($_POST['newThreadSubmit']))
 					$s->bindValue(':creator','anon',PDO::PARAM_STR);
 					$s->bindValue(':date',date("F j, Y, g:i a"),PDO::PARAM_STR);
 					$s->execute();
-					header('Location: https://ramity.com/projects/rchan/');
+					header('Location: index.php');
 				}
 				else
 				{
@@ -47,15 +47,15 @@ if(isset($_POST['newThreadSubmit'])&&!empty($_POST['newThreadSubmit']))
 	<head>
 		<title></title>
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="https://ramity.com/projects/rchan/index.css">
+		<link rel="stylesheet" type="text/css" href="index.css">
 	</head>
 	<body>
 		<?php
-		require_once('/home/ramity/public_html/projects/rchan/parts/header.php');
+		require_once('parts/header.php');
 		?>
 		<div id="content">
 			<div id="contentinr">
-				<form action="https://ramity.com/projects/rchan/" method="post">
+				<form action="index.php" method="post">
 					<div class="inputlabel">Create a new thread:</div>
 					<input autocomplete="off" placeholder="Thread name" class="text" type="text" name="newThreadName">
 					<input value="create" class="button" type="submit" name="newThreadSubmit">

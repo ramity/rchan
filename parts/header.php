@@ -4,16 +4,16 @@
 		<?php
 		try
 		{
-			$d=new PDO('mysql:host=localhost;dbname=rchan_main;charset=utf8','ramity','Gr33ndayadmin');
+			$d=new PDO('mysql:host=localhost;dbname=rchan_main;charset=utf8','username','password');
 			$d->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$d->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 			$s=$d->prepare('SELECT id,name FROM threads');
 			$s->execute();
 			$r=$s->fetchAll(PDO::FETCH_ASSOC);
 			$d=null;
-			
+
 			echo '[ ';
-			
+
 			if(!empty($r))
 			{
 				for($z=0;$z<count($r);$z++)

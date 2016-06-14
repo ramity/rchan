@@ -19,11 +19,11 @@ else
 	<head>
 		<title></title>
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="https://ramity.com/projects/rchan/index.css">
+		<link rel="stylesheet" type="text/css" href="index.css">
 	</head>
 	<body>
 		<?php
-		require_once('/home/ramity/public_html/projects/rchan/parts/header.php');
+		require_once('parts/header.php');
 		?>
 		<div id="content">
 			<div id="contentinr">
@@ -44,7 +44,7 @@ else
 					$s->execute();
 					$r=$s->fetchAll(PDO::FETCH_ASSOC);
 					$d=null;
-					
+
 					if(!empty($r))
 					{
 						for($z=0;$z<count($r);$z++)
